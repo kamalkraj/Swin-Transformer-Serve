@@ -139,3 +139,5 @@ dmypy.json
 *.mar
 swin_config.yaml
 logs/*
+
+serve/*
