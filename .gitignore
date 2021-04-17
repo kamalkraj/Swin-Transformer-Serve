@@ -136,3 +136,4 @@ dmypy.json
 
 #torch-serve
 *.mar
+swin_config.yaml
