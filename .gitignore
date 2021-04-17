@@ -130,3 +130,9 @@ dmypy.json
 
 # vscode
 .vscode/*
+
+#torch model weights
+*.pth
+
+#torch-serve
+*.mar
