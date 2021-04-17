@@ -133,7 +133,9 @@ dmypy.json
 
 #torch model weights
 *.pth
+*.pt
 
 #torch-serve
 *.mar
 swin_config.yaml
+logs/*

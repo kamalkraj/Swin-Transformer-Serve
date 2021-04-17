@@ -206,28 +206,39 @@ class SwinClassifier(ImageClassifier):
     SwinClassifier handler class.
     """
     image_processing = None
+    model_dir = None
 
-    def _load_pickled_model(self, model_dir, model_file, model_pt_path):
-        self.model_config = get_config(os.path.join(model_dir, "swin_config.yaml"))
-        resize_im = self.model_config.DATA.IMG_SIZE > 32
+    def load_image_processing(self):
+        model_config = get_config(os.path.join(SwinClassifier.model_dir, "swin_config.yaml"))
+        resize_im = model_config.DATA.IMG_SIZE > 32
         t = []
         if resize_im:
-            if self.model_config.TEST.CROP:
-                size = int((256 / 224) * self.model_config.DATA.IMG_SIZE)
+            if model_config.TEST.CROP:
+                size = int((256 / 224) * model_config.DATA.IMG_SIZE)
                 t.append(
-                    transforms.Resize(size, interpolation=_pil_interp(self.model_config.DATA.INTERPOLATION)),
+                    transforms.Resize(size, interpolation=_pil_interp(model_config.DATA.INTERPOLATION)),
                     # to maintain same ratio w.r.t. 224 images
                 )
-                t.append(transforms.CenterCrop(self.model_config.DATA.IMG_SIZE))
+                t.append(transforms.CenterCrop(model_config.DATA.IMG_SIZE))
             else:
                 t.append(
-                    transforms.Resize((self.model_config.DATA.IMG_SIZE, self.model_config.DATA.IMG_SIZE),
-                                    interpolation=_pil_interp(self.model_config.DATA.INTERPOLATION))
+                    transforms.Resize((model_config.DATA.IMG_SIZE, model_config.DATA.IMG_SIZE),
+                                    interpolation=_pil_interp(model_config.DATA.INTERPOLATION))
                 )
 
         t.append(transforms.ToTensor())
         t.append(transforms.Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD))
         SwinClassifier.image_processing = transforms.Compose(t)
+
+    def initialize(self, context):
+        super().initialize(context)
+        properties = context.system_properties
+        SwinClassifier.model_dir = properties.get("model_dir")
+        self.load_image_processing()
+
+
+    def _load_pickled_model(self, model_dir, model_file, model_pt_path):
+        self.model_config = get_config(os.path.join(model_dir, "swin_config.yaml"))
         model_def_path = os.path.join(model_dir, model_file)
         if not os.path.isfile(model_def_path):
             raise RuntimeError("Missing the model.py file")
