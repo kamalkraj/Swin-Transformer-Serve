@@ -23,7 +23,18 @@ pip install torchserve torch-model-archiver
 
 ### Pretrained Weights and Config
 
-Download weights from [Swin-Transformer](https://github.com/microsoft/Swin-Transformer/) repo. 
+#### Download weights.
+| name   | pretrain     | resolution | acc@1 | acc@5 | 1K model                                                                                                                                                                          |
+|--------|--------------|------------|-------|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Swin-T | ImageNet-1K  | 224x224    | 81.2  | 95.5  | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth)/[baidu](https://pan.baidu.com/s/156nWJy4Q28rDlrX-rRbI3w)           |
+| Swin-S | ImageNet-1K  | 224x224    | 83.2  | 96.2  | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_small_patch4_window7_224.pth)/[baidu](https://pan.baidu.com/s/1KFjpj3Efey3LmtE1QqPeQg)          |
+| Swin-B | ImageNet-1K  | 224x224    | 83.5  | 96.5  | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_base_patch4_window7_224.pth)/[baidu](https://pan.baidu.com/s/16bqCTEc70nC_isSsgBSaqQ)           |
+| Swin-B | ImageNet-1K  | 384x384    | 84.5  | 97.0  | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_base_patch4_window12_384.pth)/[baidu](https://pan.baidu.com/s/1xT1cu740-ejW7htUdVLnmw)          |
+| Swin-B | ImageNet-22K | 224x224    | 85.2  | 97.5  | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_base_patch4_window7_224_22kto1k.pth)/[baidu](https://pan.baidu.com/s/1n_wNkcbRxVXit8r_KrfAVg)   |
+| Swin-B | ImageNet-22K | 384x384    | 86.4  | 98.0  | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_base_patch4_window12_384_22kto1k.pth)/[baidu](https://pan.baidu.com/s/1caKTSdoLJYoi4WBcnmWuWg)  |
+| Swin-L | ImageNet-22K | 224x224    | 86.3  | 97.9  | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_large_patch4_window7_224_22kto1k.pth)/[baidu](https://pan.baidu.com/s/1NkQApMWUhxBGjk1ne6VqBQ)  |
+| Swin-L | ImageNet-22K | 384x384    | 87.3  | 98.2  | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_large_patch4_window12_384_22kto1k.pth)/[baidu](https://pan.baidu.com/s/1X0FLHQyPOC6Kmv2CmgxJvA) |
+
 
 For demo we will use Tiny model.
 ```bash
