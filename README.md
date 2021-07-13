@@ -81,7 +81,7 @@ To increase workers and batch inference can done using [Management API](https://
 
 #### Increase worker
 ```bash
-curl -v -X PUT "http://localhost:8081/models/swin?min_worker=3
+curl -v -X PUT "http://localhost:8081/models/swin?min_worker=3"
 ```
 This will increase minimum workers to 3.
 
